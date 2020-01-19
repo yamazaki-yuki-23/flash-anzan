@@ -55,7 +55,9 @@ class Handler extends ExceptionHandler
                 return response()->view('errors.404', ['message' => '無効なURLです']);
             }
             // 500
-            return response()->view('errors.rank', ['message' => $exception->getMessage()]);
+            if($exception->getStatusCode() == 500) {
+                return response()->view('errors.rank', ['message' => $exception->getMessage()]);
+            }
         }
         return parent::render($request, $exception);
     }

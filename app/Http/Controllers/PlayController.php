@@ -11,6 +11,7 @@ class PlayController extends Controller
 {
     public function index($level){
         if($level >= 1 && $level <= 3 && strlen($level) === 1){
+            session([ 'level' => $level]);
             $play_option = Config::get('play_option.level'.$level);
             return view('play', compact('play_option', 'level'));
         }else{
@@ -22,12 +23,15 @@ class PlayController extends Controller
         if(!$request->filled('score')){
             abort(404);
         }
-
+        $level = session('level');
+        // $level = $request->session()->pull('level', 'default');
         $is_pb = false;
         $score = $request->input('score');
         $name = '';
         $data =  $this->score_check($score, $name, $is_pb);
-        return view('result', ['name' => $data['name'], 'score' => $score, 'is_pb' => $data['is_pb']]);
+        // var_dump($level);exit;
+        return view('result', ['name' => $data['name'], 'score' => $score,
+            'is_pb' => $data['is_pb'], 'level' => $level]);
     }
 
     private function score_check($score, $name, $is_pb){

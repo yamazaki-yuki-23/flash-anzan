@@ -52,7 +52,7 @@
                                         <a href="{{ route('login') }}">ログイン</a>
                                     </p>
                                 @else
-                                    <a href="{{ route('play') }}" class="btn btn-primary btn-block btn-lg">もう一回</a>
+                                    <a href="{{route('play', ['level' => $level]) }}" class="btn btn-primary btn-block btn-lg">もう一回</a>
                                 @endguest
                             </div>
                         </div>
