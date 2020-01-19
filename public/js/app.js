@@ -6669,7 +6669,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".switch-enter-active[data-v-31e16cc0] {\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n}\n.switch-leave-active[data-v-31e16cc0] {\n  -webkit-transition: opacity 0.2s;\n  transition: opacity 0.2s;\n}\n.switch-enter[data-v-31e16cc0], .switch-leave-to[data-v-31e16cc0] {\n  opacity: 0;\n}\n.switch-enter[data-v-31e16cc0] {\n  -webkit-transform: translateY(2rem);\n          transform: translateY(2rem);\n}\n.score[data-v-31e16cc0] {\n  padding: 0.5rem 1rem 0;\n  font-size: 1.25rem;\n}\n.number[data-v-31e16cc0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 10rem;\n  font-size: 5rem;\n  text-align: center;\n}\n.number.-hidden[data-v-31e16cc0] {\n  visibility: hidden;\n}\n.input-panel[data-v-31e16cc0] {\n  position: relative;\n  width: 25rem;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 1rem;\n}\n.result__text[data-v-31e16cc0] {\n  font-size: 1.5rem;\n  line-height: 1.2;\n}\n.result__text.-correct[data-v-31e16cc0] {\n  color: var(--success);\n}\n.result__icon[data-v-31e16cc0] {\n  margin-right: 1rem;\n}\n.result__icon.-correct[data-v-31e16cc0] {\n  font-size: 2.5rem;\n  vertical-align: -0.25rem;\n}\n.result__icon.-incorrect[data-v-31e16cc0] {\n  font-size: 3rem;\n  vertical-align: -0.25rem;\n}\n.result__answer[data-v-31e16cc0] {\n  padding-bottom: 0.5rem;\n}", ""]);
+exports.push([module.i, ".container[data-v-31e16cc0] {\n  color: #ffffff;\n}\n.card[data-v-31e16cc0] {\n  background-color: #000000;\n  height: 450px;\n}\n.input-panel[data-v-31e16cc0] {\n  margin-top: 80px;\n}\n#answer[data-v-31e16cc0] {\n  font-size: 1.6rem;\n  font-weight: bold;\n  letter-spacing: 0.3em;\n  font-family: \"Rounded-L-M+2c-bold\";\n}\n.switch-enter-active[data-v-31e16cc0] {\n  -webkit-transition: all 0.5s;\n  transition: all 0.5s;\n}\n.switch-leave-active[data-v-31e16cc0] {\n  -webkit-transition: opacity 0.2s;\n  transition: opacity 0.2s;\n}\n.switch-enter[data-v-31e16cc0], .switch-leave-to[data-v-31e16cc0] {\n  opacity: 0;\n}\n.switch-enter[data-v-31e16cc0] {\n  -webkit-transform: translateY(2rem);\n          transform: translateY(2rem);\n}\n.score[data-v-31e16cc0] {\n  padding: 0.5rem 1rem 0;\n  font-size: 1.25rem;\n}\n.number[data-v-31e16cc0] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  height: 100%;\n  font-size: 10rem;\n  text-align: center;\n}\n.number.-hidden[data-v-31e16cc0] {\n  visibility: hidden;\n}\n.input-panel[data-v-31e16cc0] {\n  position: relative;\n  width: 25rem;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  padding: 1rem;\n}\n.result__text[data-v-31e16cc0] {\n  font-size: 1.5rem;\n  line-height: 1.2;\n}\n.result__text.-correct[data-v-31e16cc0] {\n  color: var(--success);\n}\n.result__icon[data-v-31e16cc0] {\n  margin-right: 1rem;\n}\n.result__icon.-correct[data-v-31e16cc0] {\n  font-size: 2.5rem;\n  vertical-align: -0.25rem;\n}\n.result__icon.-incorrect[data-v-31e16cc0] {\n  font-size: 3rem;\n  vertical-align: -0.25rem;\n}\n.result__answer[data-v-31e16cc0] {\n  padding-bottom: 0.5rem;\n}", ""]);
 
 // exports
 
@@ -38241,8 +38241,8 @@ var render = function() {
                     "div",
                     { staticClass: "form-group" },
                     [
-                      _c("label", { attrs: { for: "answer" } }, [
-                        _vm._v("答えを入力してください（半角数字）")
+                      _c("label", { attrs: { for: "answer", id: "answer" } }, [
+                        _vm._v("↓答えを入力してね")
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -38257,7 +38257,7 @@ var render = function() {
                         ],
                         ref: "answer",
                         staticClass: "form-control",
-                        attrs: { type: "tel" },
+                        attrs: { type: "number" },
                         domProps: { value: _vm.answer },
                         on: {
                           input: function($event) {

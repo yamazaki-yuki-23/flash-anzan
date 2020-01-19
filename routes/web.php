@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::view('/', 'top');
-Route::get('/play', 'PlayController@index')->name('play');
+Route::get('/play/{level}', 'PlayController@index')->name('play');
 Route::post('/result', 'PlayController@result')->name('result');
 Route::get('/rank', 'RankController@index')->name('rank');
 Route::get('/history', 'HistoryController@index')->name('history');

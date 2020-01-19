@@ -9,14 +9,18 @@ use App\History;
 
 class PlayController extends Controller
 {
-    public function index(){
-        $play_option = Config::get('play_option');
-        return view('play', compact('play_option'));
+    public function index($level){
+        if($level >= 1 && $level <= 3 && strlen($level) === 1){
+            $play_option = Config::get('play_option.level'.$level);
+            return view('play', compact('play_option', 'level'));
+        }else{
+            abort(404);
+        }
     }
 
     public function result(Request $request){
         if(!$request->filled('score')){
-            abort(400,'無効なURLです。');
+            abort(404);
         }
 
         $is_pb = false;

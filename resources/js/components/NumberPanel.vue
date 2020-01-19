@@ -9,8 +9,8 @@
                         <slot></slot>
                         <input type="hidden" name="score" v-model="score">
                         <div class="form-group">
-                            <label for="answer">答えを入力してください（半角数字）</label>
-                            <input type="tel" class="form-control" ref="answer" v-model.number="answer">
+                            <label for="answer" id="answer">↓答えを入力してね</label>
+                            <input type="number" class="form-control" ref="answer" v-model.number="answer">
                             <transition name="switch" mode="out-in">
                                 <div v-if="'input' === mode" key="input" class="mt-3">
                                     <button type="submit" class="btn btn-primary btn-block" :disabled="'' === answer">決定</button>
@@ -132,6 +132,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    color: #ffffff;
+}
+.card {
+    background-color: #000000;
+    height: 450px;
+}
+.input-panel {
+    margin-top: 80px;
+}
+#answer {
+    font-size: 1.6rem;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    font-family: 'Rounded-L-M+2c-bold';
+}
 .switch-enter-active {
     transition: all 0.5s;
 }
@@ -152,8 +168,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10rem;
-    font-size: 5rem;
+    height: 100%;
+    font-size: 10rem;
     text-align: center;
     &.-hidden {
         visibility: hidden;

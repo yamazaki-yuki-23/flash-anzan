@@ -16,8 +16,8 @@
                     <p class="alert alert-success">{{ session('status') }}</p>
                 @endif
 
-                <div class="card">
-                    <h1 class="card-header text-muted">ランキング</h1>
+                <div class="card border-dark">
+                    <h1 class="card-header border-dark">ランキング</h1>
 
                     <div class="card-body">
                         @if($data['user_rank'] > 0)

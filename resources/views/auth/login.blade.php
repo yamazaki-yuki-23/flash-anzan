@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <h1 class="card-header">ログイン</h1>
+            <div class="card border-dark">
+                <h1 class="card-header border-dark">ログイン</h1>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
