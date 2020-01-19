@@ -6,7 +6,7 @@
             justify-content: center;
         }
 
-        .history__scorez{
+        .history__score{
             font-size: 3rem;
         }
 
