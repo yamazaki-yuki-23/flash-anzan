@@ -24,12 +24,10 @@ class PlayController extends Controller
             abort(404);
         }
         $level = session('level');
-        // $level = $request->session()->pull('level', 'default');
         $is_pb = false;
         $score = $request->input('score');
         $name = '';
         $data =  $this->score_check($score, $name, $is_pb);
-        // var_dump($level);exit;
         return view('result', ['name' => $data['name'], 'score' => $score,
             'is_pb' => $data['is_pb'], 'level' => $level]);
     }
@@ -39,7 +37,7 @@ class PlayController extends Controller
             if(Auth::check()){
                 $user = Auth::user();
                 $name = $user->name;
-                History::created([
+                History::create([
                     'user_id' => $user->id,
                     'score' => $score,
                 ]);
