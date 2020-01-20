@@ -37,7 +37,7 @@
                         <div class="result">
                             <p class="text-center">{{ $name !== ''  ? "$name さん" : 'あなた' }}のスコア</p>
                             <p class="result__score text-center">{{ $score }}</p>
-                            @if('is_pb')
+                            @if($is_pb)
                                 <p class="result__pb text-center">自己ベスト更新！</p>
                             @endif
 
