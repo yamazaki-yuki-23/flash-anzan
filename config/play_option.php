@@ -39,7 +39,7 @@ return[
             'interval' => 300,
         ],
         [
-            'times' => -1,
+            'times' => 3,
             'digits' => 4,
             'quantity' => 10,
             'interval' => 300,
@@ -83,7 +83,7 @@ return[
             'interval' => 200,
         ],
         [
-            'times' => -1,
+            'times' => 3,
             'digits' => 4,
             'quantity' => 10,
             'interval' => 200,
@@ -127,7 +127,7 @@ return[
             'interval' => 100,
         ],
         [
-            'times' => -1,
+            'times' => 3,
             'digits' => 4,
             'quantity' => 10,
             'interval' => 100,
