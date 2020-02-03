@@ -3,32 +3,41 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <p class="score">Score {{ score }}</p>
-                    <p v-if="'show' === mode" class="number" :class="{ '-hidden': hidden }">{{ number }}</p>
-                    <form v-else class="input-panel" method="POST" :action="url" @submit="onSubmit($event)">
-                        <slot></slot>
-                        <input type="hidden" name="score" v-model="score">
-                        <div class="form-group">
-                            <label for="answer" id="answer">↓答えを入力してね</label>
-                            <input type="number" class="form-control" ref="answer" v-model.number="answer">
-                            <transition name="switch" mode="out-in">
-                                <div v-if="'input' === mode" key="input" class="mt-3">
-                                    <button type="submit" class="btn btn-primary btn-block" :disabled="'' === answer">決定</button>
-                                </div>
-                                <div v-else-if="is_correct" key="correct" class="result mt-3">
-                                    <p class="result__text -correct alert alert-success"><span class="result__icon -correct">〇</span>正解！</p>
-                                    <button type="submit" class="btn btn-primary btn-block">次の問題へ</button>
-                                </div>
-                                <div v-else key="incorrect" class="result mt-3">
-                                    <div class="alert alert-danger">
-                                        <p class="result__text -incorrect mb-0"><span class="result__icon -incorrect">×</span>残念</p>
-                                        <p class="result__answer mb-0">正解は、{{ correct_answer }}でした</p>
+                    <div v-if="timer">
+                        <p class="score">Score {{ score }}</p>
+                        <p v-if="'show' === mode" class="number" :class="{ '-hidden': hidden }">{{ number }}</p>
+                        <form v-else class="input-panel" method="POST" :action="url" @submit="onSubmit($event)">
+                            <slot></slot>
+                            <input type="hidden" name="score" v-model="score">
+                            <div class="form-group">
+                                <label for="answer" id="answer">↓答えを入力してね</label>
+                                <input type="number" class="form-control" ref="answer" v-model.number="answer">
+                                <transition name="switch" mode="out-in">
+                                    <div v-if="'input' === mode" key="input" class="mt-3">
+                                        <button type="submit" class="btn btn-primary btn-block" :disabled="'' === answer">決定</button>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block">スコアを送信</button>
-                                </div>
-                            </transition>
-                        </div>
-                    </form>
+                                    <div v-else-if="is_correct" key="correct" class="result mt-3">
+                                        <p class="result__text -correct alert alert-success"><span class="result__icon -correct">〇</span>正解！</p>
+                                        <button type="submit" class="btn btn-primary btn-block">次の問題へ</button>
+                                    </div>
+                                    <div v-else key="incorrect" class="result mt-3">
+                                        <div class="alert alert-danger">
+                                            <p class="result__text -incorrect mb-0"><span class="result__icon -incorrect">×</span>残念</p>
+                                            <p class="result__answer mb-0">正解は、{{ correct_answer }}でした</p>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">スコアを送信</button>
+                                    </div>
+                                </transition>
+                            </div>
+                        </form>
+                    </div>
+                    <div v-else class="count__down">
+                        <div v-if="count_start"><h3 id="count__start">あと{{ count }}秒</h3></div>
+                        <div v-else><h2 id="count__start">↓スタートボタンを押してね</h2></div>
+                    </div>
+                </div>
+                <div v-if="timer == false" class="mt-3 text-center">
+                    <button class="btn btn-primary count__start" v-on:click="doRestart">スタート</button>
                 </div>
             </div>
         </div>
@@ -37,10 +46,14 @@
 
 <script>
 import { setTimeout } from 'timers';
+import { setInterval } from 'timers';
 export default {
     props: ['url'],
     data() {
         return {
+            timer: false,
+            count_start: false,
+            count:5,
             mode: 'show',
             score: 0,
             number: 0,
@@ -61,9 +74,6 @@ export default {
             this.option = JSON.parse(option.innerHTML);
         }
         this.state = this.option.shift();
-    },
-    mounted() {
-        this.start();
     },
     methods: {
         start() {
@@ -125,6 +135,17 @@ export default {
                     this.start();
                     event.preventDefault();
                 }
+            }
+        },
+        doRestart() {
+            this.count_start = true;
+            setInterval(() => this.countDown(), 1000);
+        },
+        countDown(){
+            this.count--;
+            if(this.count == 0){
+                this.timer = true;
+                this.start();
             }
         }
     }
@@ -203,5 +224,22 @@ export default {
 }
 .result__answer {
     padding-bottom: 0.5rem;
+}
+.count__down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+.count__start {
+    width: 17rem;
+    height: 3rem;
+}
+#count__start {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    font-family: 'Rounded-L-M+2c-bold';
 }
 </style>

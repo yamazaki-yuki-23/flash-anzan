@@ -43,11 +43,13 @@
 
                             <div class="mt-5">
                                 @guest
+                                    <a href="{{route('play', ['level' => $level]) }}" class="btn btn-primary btn-block btn-lg mb-4">もう一回</a>
+                                    <hr style="border-top: 3px double #8c8b8b;">
                                     <p class="result__invite">
                                         <span class="d-inline-block">会員登録をして、</span>
                                         <span class="d-inline-block">スコア登録をしませんか?</span>
                                     </p>
-                                    <a href="{{ route('register') }}" class="btn btn-primary btn-block btn-lg">会員登録</a>
+                                    <a href="{{ route('register') }}" class="btn btn-warning btn-block btn-lg">会員登録</a>
                                     <p class="result__member mt-3">アカウントをお持ちの場合は
                                         <a href="{{ route('login') }}">ログイン</a>
                                     </p>
